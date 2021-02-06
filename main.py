@@ -12,24 +12,27 @@ screen.tracer(0)
 
 player = Player()
 car_manager = CarManager()
+scoreboard = Scoreboard()
 car_manager.generate_car()
 
 screen.listen()
-screen.onkey(key="Up", fun=player.move)
+screen.onkey(key="Up", fun=player.move_forward)
+screen.onkey(key="Down", fun=player.move_backward)
 
-# game_on = player.alive
-loop_count = 0
+
 while player.alive:
     time.sleep(0.1)
     screen.update()
+
+    car_manager.generate_car()
     car_manager.move_cars(player)
 
-    loop_count += 1
-    if loop_count == 6:
-        car_manager.generate_car()
-        loop_count = 0
+    if player.is_at_finish_line():
+        player.go_to_start()
+        scoreboard.update_level()
+        car_manager.car_speed += 2
 
-print("Game Over")
+scoreboard.game_over()
 
 
 

@@ -9,15 +9,18 @@ class CarManager():
     def __init__(self):
         self.cars_on_screen = []
         self.generate_car()
+        self.car_speed = MOVE_DISTANCE
 
     def generate_car(self):
-        car = Turtle()
-        car.color(random.choice(COLORS))
-        car.penup()
-        car.shape('square')
-        car.shapesize(stretch_len=2, stretch_wid=1)
-        car.setpos(300, random.randint(-250, 250))
-        self.cars_on_screen.append(car)
+        random_chance = random.randint(1, 6)
+        if random_chance == 1:
+            car = Turtle()
+            car.color(random.choice(COLORS))
+            car.penup()
+            car.shape('square')
+            car.shapesize(stretch_len=2, stretch_wid=1)
+            car.setpos(300, random.randint(-250, 250))
+            self.cars_on_screen.append(car)
 
     def move_cars(self, player):
         for car in self.cars_on_screen:
@@ -25,7 +28,7 @@ class CarManager():
                 car.clear()
                 self.cars_on_screen.remove(car)
             else:
-                car.backward(MOVE_DISTANCE)
+                car.backward(self.car_speed)
                 if car.distance(player) < 20:
                     player.alive = False
 
