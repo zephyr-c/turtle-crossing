@@ -2,6 +2,7 @@ from turtle import Turtle
 import random
 
 MOVE_DISTANCE = 5
+MOVE_INCREMENT = 2
 COLORS = ['red', 'orange', 'yellow', 'green', 'blue', 'violet']
 
 class CarManager():
@@ -32,6 +33,8 @@ class CarManager():
                 if car.distance(player) < 20:
                     player.alive = False
 
+    def go_faster(self):
+        self.car_speed += MOVE_INCREMENT
 
 
 class Car(Turtle):

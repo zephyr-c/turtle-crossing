@@ -30,7 +30,7 @@ while player.alive:
     if player.is_at_finish_line():
         player.go_to_start()
         scoreboard.update_level()
-        car_manager.car_speed += 2
+        car_manager.go_faster()
 
 scoreboard.game_over()
 
@@ -40,6 +40,6 @@ scoreboard.game_over()
 screen.exitonclick()
 
 # Add listen and onkey method to move turtle north
-# TODO: 5. Detect when turtle player collides with a car and trigger game over
-# TODO: 6. Detect when turtle has reached the top edge of the screen(FINISH_LINE_Y), return turtle to starting position
-# TODO: 7. Increase speed of cars each time turtle crosses the finish line
+# Detect when turtle player collides with a car and trigger game over
+# Detect when turtle has reached the top edge of the screen(FINISH_LINE_Y), return turtle to starting position
+# Increase speed of cars each time turtle crosses the finish line
